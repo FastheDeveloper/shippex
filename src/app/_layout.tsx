@@ -5,6 +5,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 import * as SplashScreen from 'expo-splash-screen';
 import Toast, { BaseToast, BaseToastProps, ErrorToast } from 'react-native-toast-message';
+import { StatusBar } from 'expo-status-bar';
 
 const toastConfig = {
   success: (props: React.JSX.IntrinsicAttributes & BaseToastProps) => (
@@ -27,6 +28,7 @@ const toastConfig = {
   ),
 };
 
+SplashScreen.hide();
 function AppContent() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>

@@ -4,7 +4,28 @@ module.exports = {
 
     presets: [require('nativewind/preset')],
     theme: {
-        extend: {},
+        extend: {
+            colors: {
+                PRIMARY_BLUE: "#2F50C1",
+                TEXT_INPUT: "#F4F2F8",
+                PLACEHOLDER_TEXT: "#A7A3B3",
+                REGULAR_TEXT: '#757281',
+                HEADER_COLOR: "#4561DB",
+                BOX_BG: '#F4F2F8',
+                RECIEVED_BG: "#D9E6FD",
+                ERROR_BG: "#FEE3D4",
+                ERROR_TEXT: "#D12030",
+                DELIVRY_BG: "#E3FAD6",
+                DELIVERY_TEXT: "#208D28",
+                STROKE_COLOR: "#6E91EC"
+            },
+            fontFamily: {
+                SF_REGULAR: 'SF-REGULAR',
+                SF_MEDIUM: "SF_MEDIUM",
+                SF_SEMIBOLD: "SF_SEMIBOLD",
+                SF_BOLD: "SF_BOLD",
+            }
+        },
     },
     plugins: [],
 };
