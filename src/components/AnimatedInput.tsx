@@ -7,6 +7,7 @@ import Animated, {
   interpolate,
   Extrapolate,
 } from 'react-native-reanimated';
+import { APP_COLOR } from '../constants/Colors';
 
 interface Props extends Omit<TextInputProps, 'style'> {
   title?: string;
@@ -17,6 +18,7 @@ interface Props extends Omit<TextInputProps, 'style'> {
   containerStyle?: string;
   leftAdornment?: React.ReactElement;
   rightAdornment?: React.ReactElement;
+  isUrl?: boolean; // ← Add this
 }
 
 const SIZES = {
@@ -42,6 +44,7 @@ const AnimatedInput = forwardRef<TextInput, Props>(
       containerStyle,
       leftAdornment,
       rightAdornment,
+      isUrl,
       ...props
     },
     ref
@@ -49,7 +52,7 @@ const AnimatedInput = forwardRef<TextInput, Props>(
     const textLength = useSharedValue(value?.length || 0);
     const placeholderPosition = useSharedValue(0);
     const isFocused = useSharedValue(false);
-
+    const [isUrlFocused, setIsUrlFocused] = React.useState(false);
     useEffect(() => {
       placeholderPosition.value = withTiming(value?.length ? 1 : 0, {
         duration: 250,
@@ -58,7 +61,7 @@ const AnimatedInput = forwardRef<TextInput, Props>(
     }, [value]);
 
     const animatedPlaceholder = useAnimatedStyle(() => ({
-      color: placeholderPosition.value === 0 ? '#666' : '#999',
+      color: placeholderPosition.value === 0 ? APP_COLOR.PLACEHOLDER_TEXT : APP_COLOR.DARK_TEXT,
       fontSize: interpolate(placeholderPosition.value, [0, 1], [16, 12], Extrapolate.CLAMP),
       top: interpolate(placeholderPosition.value, [0, 1], [topValue, 0], Extrapolate.CLAMP),
     }));
@@ -77,28 +80,65 @@ const AnimatedInput = forwardRef<TextInput, Props>(
           style={animatedContainerStyle}>
           {leftAdornment}
 
-          <View className="relative h-[56px] flex-1 justify-center">
+          <View className="relative h-[56px] flex-1 flex-row items-center">
+            {isUrl && (isUrlFocused || (!!value && value.length > 0)) && (
+              <View className="mb-[-8] flex-row items-center">
+                <Text
+                  className="text-DARK_TEXT font-SF_REGULAR text-xl"
+                  style={{
+                    includeFontPadding: false,
+                    lineHeight: 22,
+                  }}
+                  selectable={false}
+                  pointerEvents="none">
+                  https://
+                </Text>
+                <Text className="text-PLACEHOLDER_TEXT text-xl"> | </Text>
+              </View>
+            )}
             <TextInput
               ref={ref}
-              value={value}
+              value={
+                isUrl
+                  ? isUrlFocused
+                    ? value?.replace(/^https:\/\//, '')
+                    : value?.replace(/^https:\/\//, '')
+                  : value
+              }
               onFocus={(e) => {
                 isFocused.value = true;
                 placeholderPosition.value = withTiming(1, { duration: 250 });
+                setIsUrlFocused(true);
                 onFocus?.(e);
               }}
               onBlur={(e) => {
                 isFocused.value = false;
-                if (!textLength.value) {
+                setIsUrlFocused(false);
+                const inputText = value?.replace(/^https:\/\//, '') || '';
+
+                if (!inputText.length) {
+                  onChangeText?.(''); // Clear the field if nothing typed
                   placeholderPosition.value = withTiming(0, { duration: 250 });
                 }
+
                 onBlur?.(e);
               }}
               onChange={(e) => {
                 textLength.value = e.nativeEvent.text.length;
                 onChange?.(e);
               }}
-              onChangeText={onChangeText}
-              className="text-PRIMARY_BLUE font-SF_REGULAR z-10 pt-3 text-base"
+              onChangeText={(text) => {
+                const newValue = isUrl ? `https://${text.replace(/^https:\/\//, '')}` : text;
+                onChangeText?.(newValue);
+              }}
+              className="text-PRIMARY_BLUE font-SF_REGULAR z-10 mb-[-8] flex-1 text-xl"
+              style={{
+                height: SIZES.inputHeight,
+                lineHeight: 22,
+                textAlignVertical: 'center',
+                includeFontPadding: false,
+                padding: 0,
+              }}
               placeholder=""
               autoCapitalize="none"
               {...props}

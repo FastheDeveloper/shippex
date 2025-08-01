@@ -17,7 +17,8 @@ module.exports = {
                 ERROR_TEXT: "#D12030",
                 DELIVRY_BG: "#E3FAD6",
                 DELIVERY_TEXT: "#208D28",
-                STROKE_COLOR: "#6E91EC"
+                STROKE_COLOR: "#6E91EC",
+                DARK_TEXT: "#58536E"
             },
             fontFamily: {
                 SF_REGULAR: "SF-Regular",

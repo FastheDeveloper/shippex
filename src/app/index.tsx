@@ -13,6 +13,7 @@ import AppButton from '../components/BaseButton';
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 import Login from './(auth)/login';
 import { APP_COLOR } from '../constants/Colors';
+import { useLoginForm } from '../hooks/useLoginHooks';
 
 export default function App() {
   const animation = useRef<LottieView>(null);
@@ -42,6 +43,7 @@ export default function App() {
 
     start();
   }, [isReady, fontsLoaded]);
+  const loginForm = useLoginForm();
 
   return (
     <View className="flex-1 items-center justify-center bg-white">
@@ -86,17 +88,19 @@ export default function App() {
         enablePanDownToClose
         onChange={handleSheetChanges}
         snapPoints={['95%']}
-        containerStyle={{ flex: 1 }}>
+        containerStyle={{ flex: 1 }}
+        handleIndicatorStyle={{ backgroundColor: APP_COLOR.PLACEHOLDER_TEXT }}>
         <BottomSheetView style={styles.contentContainer}>
           <Pressable
             className="flex-row gap-2"
             onPress={() => {
-              bottomSheetRef.current?.close(); // 0 is the first snapPoint, which is 200
+              loginForm.resetLoginForm();
+              bottomSheetRef.current?.close();
             }}>
             <BackIcon width={17} height={22} />
             <Text className="font-SF_MEDIUM text-PRIMARY_BLUE">Cancel</Text>
           </Pressable>
-          <Login />
+          <Login {...loginForm} />
         </BottomSheetView>
       </BottomSheet>
     </View>
