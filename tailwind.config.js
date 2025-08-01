@@ -20,10 +20,10 @@ module.exports = {
                 STROKE_COLOR: "#6E91EC"
             },
             fontFamily: {
-                SF_REGULAR: 'SF-REGULAR',
-                SF_MEDIUM: "SF_MEDIUM",
-                SF_SEMIBOLD: "SF_SEMIBOLD",
-                SF_BOLD: "SF_BOLD",
+                SF_REGULAR: "SF-Regular",
+                SF_MEDIUM: "SF-Medium",
+                SF_SEMIBOLD: "SF-SemiBold",
+                SF_BOLD: "SF-Bold",
             }
         },
     },
