@@ -1,8 +1,9 @@
 [{
+        "id": 1,
         "status": "RECEIVED",
         "origin": {
             "state": "Giza",
-            "address": "6th October, 15 Palm Hills St."
+            "address": "15 Palm Hills St."
         },
         "destination": {
             "state": "Mansoura",
@@ -11,22 +12,24 @@
         "trackingId": "41785691440"
     },
     {
+        "id": 2,
         "status": "DELIVERED",
         "origin": {
             "state": "Alexandria",
-            "address": "Miami, 78 Corniche St."
+            "address": "78 Corniche St."
         },
         "destination": {
             "state": "Cairo",
-            "address": "Heliopolis, 12 Triumph Sq."
+            "address": "12 Triumph Sq."
         },
         "trackingId": "41785691441"
     },
     {
+        "id": 3,
         "status": "CANCELED",
         "origin": {
             "state": "Aswan",
-            "address": "High Dam, 8 Nile Side"
+            "address": "8 Nile Side"
         },
         "destination": {
             "state": "Luxor",
@@ -35,10 +38,11 @@
         "trackingId": "41785691442"
     },
     {
-        "status": "RECEIVED",
+        "id": 4,
+        "status": "ERROR",
         "origin": {
             "state": "Cairo",
-            "address": "Nasr City, 120 Abbas El Akkad"
+            "address": "120 Abbas El Akkad"
         },
         "destination": {
             "state": "Alexandria",
@@ -47,10 +51,11 @@
         "trackingId": "41785691443"
     },
     {
-        "status": "ERROR",
+        "id": 5,
+        "status": "ON HOLD",
         "origin": {
             "state": "Mansoura",
-            "address": "Gomhoreya St., Building 5"
+            "address": "5, Gomhoreya St."
         },
         "destination": {
             "state": "Ismailia",
@@ -59,10 +64,11 @@
         "trackingId": "41785691444"
     },
     {
-        "status": "DELIVERED",
+        "id": 6,
+        "status": "CANCELED",
         "origin": {
             "state": "Luxor",
-            "address": "West Bank, 77 Tomb Rd."
+            "address": "77 Tomb Rd."
         },
         "destination": {
             "state": "Aswan",
@@ -71,10 +77,11 @@
         "trackingId": "41785691445"
     },
     {
-        "status": "ERROR",
+        "id": 7,
+        "status": "RECEIVED",
         "origin": {
             "state": "Zagazig",
-            "address": "El Mahata Square, 4th Floor"
+            "address": "El Mahata Square"
         },
         "destination": {
             "state": "Cairo",
@@ -83,10 +90,11 @@
         "trackingId": "41785691446"
     },
     {
-        "status": "CANCELED",
+        "id": 8,
+        "status": "PUT AWAY",
         "origin": {
             "state": "Ismailia",
-            "address": "City Center, 101 Port Said Rd."
+            "address": "101 Port Said Rd."
         },
         "destination": {
             "state": "Giza",
@@ -95,10 +103,11 @@
         "trackingId": "41785691447"
     },
     {
-        "status": "DELIVERED",
+        "id": 9,
+        "status": "ON HOLD",
         "origin": {
             "state": "Fayoum",
-            "address": "Lake District, 2 Waterfall Ave."
+            "address": "2 Waterfall Ave."
         },
         "destination": {
             "state": "Alexandria",
@@ -107,15 +116,29 @@
         "trackingId": "41785691448"
     },
     {
-        "status": "RECEIVED",
+        "id": 10,
+        "status": "LOST",
         "origin": {
             "state": "Cairo",
-            "address": "Zamalek, 14 Brazil St."
+            "address": "14 Brazil St."
         },
         "destination": {
             "state": "Tanta",
             "address": "Downtown, 99 El Galaa St."
         },
         "trackingId": "41785691449"
+    },
+    {
+        "id": 11,
+        "status": "REJECTED",
+        "origin": {
+            "state": "Cairo",
+            "address": "14 Brazil St."
+        },
+        "destination": {
+            "state": "Tanta",
+            "address": "Downtown, 99 El Galaa St."
+        },
+        "trackingId": "41785691421"
     }
 ]
