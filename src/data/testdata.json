@@ -1,0 +1,121 @@
+[{
+        "status": "RECEIVED",
+        "origin": {
+            "state": "Giza",
+            "address": "6th October, 15 Palm Hills St."
+        },
+        "destination": {
+            "state": "Mansoura",
+            "address": "Tanta Rd., Zone 3"
+        },
+        "trackingId": "41785691440"
+    },
+    {
+        "status": "DELIVERED",
+        "origin": {
+            "state": "Alexandria",
+            "address": "Miami, 78 Corniche St."
+        },
+        "destination": {
+            "state": "Cairo",
+            "address": "Heliopolis, 12 Triumph Sq."
+        },
+        "trackingId": "41785691441"
+    },
+    {
+        "status": "CANCELED",
+        "origin": {
+            "state": "Aswan",
+            "address": "High Dam, 8 Nile Side"
+        },
+        "destination": {
+            "state": "Luxor",
+            "address": "Karnak St., Temple View"
+        },
+        "trackingId": "41785691442"
+    },
+    {
+        "status": "RECEIVED",
+        "origin": {
+            "state": "Cairo",
+            "address": "Nasr City, 120 Abbas El Akkad"
+        },
+        "destination": {
+            "state": "Alexandria",
+            "address": "Stanley, 23 Beach Rd."
+        },
+        "trackingId": "41785691443"
+    },
+    {
+        "status": "ERROR",
+        "origin": {
+            "state": "Mansoura",
+            "address": "Gomhoreya St., Building 5"
+        },
+        "destination": {
+            "state": "Ismailia",
+            "address": "Canal District, Gate 1"
+        },
+        "trackingId": "41785691444"
+    },
+    {
+        "status": "DELIVERED",
+        "origin": {
+            "state": "Luxor",
+            "address": "West Bank, 77 Tomb Rd."
+        },
+        "destination": {
+            "state": "Aswan",
+            "address": "Old Market, 12 Souq St."
+        },
+        "trackingId": "41785691445"
+    },
+    {
+        "status": "ERROR",
+        "origin": {
+            "state": "Zagazig",
+            "address": "El Mahata Square, 4th Floor"
+        },
+        "destination": {
+            "state": "Cairo",
+            "address": "Maadi, 6 Road 9"
+        },
+        "trackingId": "41785691446"
+    },
+    {
+        "status": "CANCELED",
+        "origin": {
+            "state": "Ismailia",
+            "address": "City Center, 101 Port Said Rd."
+        },
+        "destination": {
+            "state": "Giza",
+            "address": "Mohandessin, 88 Gameat El Dowal"
+        },
+        "trackingId": "41785691447"
+    },
+    {
+        "status": "DELIVERED",
+        "origin": {
+            "state": "Fayoum",
+            "address": "Lake District, 2 Waterfall Ave."
+        },
+        "destination": {
+            "state": "Alexandria",
+            "address": "El Mandara, 55 Sea View St."
+        },
+        "trackingId": "41785691448"
+    },
+    {
+        "status": "RECEIVED",
+        "origin": {
+            "state": "Cairo",
+            "address": "Zamalek, 14 Brazil St."
+        },
+        "destination": {
+            "state": "Tanta",
+            "address": "Downtown, 99 El Galaa St."
+        },
+        "trackingId": "41785691449"
+    }
+]
