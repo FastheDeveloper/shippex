@@ -39,20 +39,27 @@ export const CustomOverlayBackground = (props: BottomSheetBackgroundProps) => {
 export default function Home() {
   const [markedAll, setMarkedAll] = useState(false);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
-  const [selectedFilter, setSelectedFilter] = useState('');
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  console.log('====================================');
+  console.log(selectedFilters);
+  console.log('====================================');
+  const [selectedFilter, setSelectedFilter] = useState('');
+  // const filteredData = useMemo(() => {
+  //   if (!selectedFilter) return shipmentData;
+
+  //   const normalizedFilter = selectedFilter.toUpperCase(); // 'Putaway' => 'PUTAWAY'
+  //   return shipmentData.filter((item) => item.status === normalizedFilter);
+  // }, [selectedFilter]);
+
   const filteredData = useMemo(() => {
-    if (!selectedFilter) return shipmentData;
+    if (selectedFilters.length === 0) return shipmentData;
 
-    const normalizedFilter = selectedFilter.toUpperCase(); // 'Putaway' => 'PUTAWAY'
-    return shipmentData.filter((item) => item.status === normalizedFilter);
-  }, [selectedFilter]);
-
+    return shipmentData.filter((item) => selectedFilters.includes(item.status.toUpperCase()));
+  }, [selectedFilters, shipmentData]);
   const handleSheetChanges = (index: number) => {
     setIsSheetOpen(index >= 0);
   };
   const bottomSheetRef = useRef<BottomSheet>(null);
-
   return (
     <View className="flex-1 bg-white px-4">
       <View>
@@ -90,7 +97,7 @@ export default function Home() {
           </Pressable>
         </View>
 
-        <View>
+        <View className="mb-80">
           <ShipmentList data={filteredData as ShipmentItemType[]} />
         </View>
       </View>
@@ -107,17 +114,19 @@ export default function Home() {
         <BottomSheetView style={styles.contentContainer}>
           <FilterSheet
             onClose={() => {
-              setSelectedFilter('');
+              // setSelectedFilter('');
+              setSelectedFilters([]);
               setIsSheetOpen(false);
-
               bottomSheetRef.current?.close();
             }}
-            onDone={(filter) => {
-              setSelectedFilter(filter);
+            onDone={(filters) => {
+              // setSelectedFilter(filter);
+              setSelectedFilters(filters);
               bottomSheetRef.current?.close();
             }}
-            onSelect={(filter) => {
-              setSelectedFilter(filter);
+            onSelect={(filters) => {
+              // setSelectedFilter(filter);
+              setSelectedFilters(filters);
             }}
           />
         </BottomSheetView>

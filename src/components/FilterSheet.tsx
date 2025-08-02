@@ -4,8 +4,8 @@ import { APP_COLOR } from '../constants/Colors';
 
 type FilterSheetProps = {
   onClose: () => void;
-  onDone: (filter: string) => void;
-  onSelect: (filter: string) => void;
+  onDone: (filters: string[]) => void;
+  onSelect: (filters: string[]) => void;
 };
 
 const FILTERS = ['RECEIVED', 'PUT AWAY', 'Delivered', 'Canceled', 'Rejected', 'Lost', 'On Hold'];
@@ -13,20 +13,23 @@ const FILTERS = ['RECEIVED', 'PUT AWAY', 'Delivered', 'Canceled', 'Rejected', 'L
 const FilterSheet = ({ onClose, onDone, onSelect }: FilterSheetProps) => {
   const [selectedFilter, setSelectedFilter] = useState('');
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
-  const handleFilterPress = (filter: string) => {
-    const newFilter = selectedFilter === filter ? '' : filter;
-    setSelectedFilter(newFilter);
-    onSelect(newFilter);
-  };
 
+  const handleFilterPress = (filter: string) => {
+    const alreadySelected = selectedFilters.includes(filter);
+    const updatedFilters = alreadySelected
+      ? selectedFilters.filter((f) => f !== filter)
+      : [...selectedFilters, filter];
+
+    setSelectedFilters(updatedFilters);
+    onSelect(updatedFilters); // Now sending an array
+  };
   const handleDone = () => {
-    onDone(selectedFilter);
-    // onClose();
+    onDone(selectedFilters);
   };
 
   const handleCancel = () => {
-    setSelectedFilter('');
-    onDone('');
+    setSelectedFilters([]);
+    onDone([]);
     onClose();
   };
 
@@ -56,12 +59,12 @@ const FilterSheet = ({ onClose, onDone, onSelect }: FilterSheetProps) => {
           <View className="flex-row  gap-4">
             <Pressable
               className={`bg-BOX_BG w-[27%] flex-row items-center justify-center gap-3 rounded-xl px-1 py-2  ${
-                selectedFilter === 'RECEIVED' ? 'border-PRIMARY_BLUE border' : ''
+                selectedFilters.includes('RECEIVED') ? 'border-PRIMARY_BLUE border' : ''
               }`}
               onPress={() => handleFilterPress('RECEIVED')}>
               <Text
                 className={`font-SF_REGULAR text-base ${
-                  selectedFilter === 'RECEIVED' ? 'text-PRIMARY_BLUE' : 'text-DARK_TEXT'
+                  selectedFilters.includes('RECEIVED') ? 'text-PRIMARY_BLUE' : 'text-DARK_TEXT'
                 }`}>
                 Received
               </Text>
@@ -69,12 +72,12 @@ const FilterSheet = ({ onClose, onDone, onSelect }: FilterSheetProps) => {
 
             <Pressable
               className={`bg-BOX_BG w-[27%] flex-row items-center justify-center gap-3 rounded-xl px-1 py-2  ${
-                selectedFilter === 'PUT AWAY' ? 'border-PRIMARY_BLUE border' : ''
+                selectedFilters.includes('PUT AWAY') ? 'border-PRIMARY_BLUE border' : ''
               }`}
               onPress={() => handleFilterPress('PUT AWAY')}>
               <Text
                 className={`font-SF_REGULAR text-base ${
-                  selectedFilter === 'PUT AWAY' ? 'text-PRIMARY_BLUE' : 'text-DARK_TEXT'
+                  selectedFilters.includes('PUT AWAY') ? 'text-PRIMARY_BLUE' : 'text-DARK_TEXT'
                 }`}>
                 Putaway
               </Text>
@@ -82,12 +85,12 @@ const FilterSheet = ({ onClose, onDone, onSelect }: FilterSheetProps) => {
 
             <Pressable
               className={`bg-BOX_BG w-[27%] flex-row items-center justify-center gap-3 rounded-xl px-1 py-2  ${
-                selectedFilter === 'Delivered' ? 'border-PRIMARY_BLUE border' : ''
+                selectedFilters.includes('DELIVERED') ? 'border-PRIMARY_BLUE border' : ''
               }`}
-              onPress={() => handleFilterPress('Delivered')}>
+              onPress={() => handleFilterPress('DELIVERED')}>
               <Text
                 className={`font-SF_REGULAR text-base ${
-                  selectedFilter === 'Delivered' ? 'text-PRIMARY_BLUE' : 'text-DARK_TEXT'
+                  selectedFilters.includes('DELIVERED') ? 'text-PRIMARY_BLUE' : 'text-DARK_TEXT'
                 }`}>
                 Delivered
               </Text>
@@ -97,12 +100,12 @@ const FilterSheet = ({ onClose, onDone, onSelect }: FilterSheetProps) => {
           <View className="flex-row  gap-4">
             <Pressable
               className={`bg-BOX_BG w-[27%] flex-row items-center justify-center gap-3 rounded-xl px-1 py-2  ${
-                selectedFilter === 'Canceled' ? 'border-PRIMARY_BLUE border' : ''
+                selectedFilters.includes('CANCELED') ? 'border-PRIMARY_BLUE border' : ''
               }`}
-              onPress={() => handleFilterPress('Canceled')}>
+              onPress={() => handleFilterPress('CANCELED')}>
               <Text
                 className={`font-SF_REGULAR text-base ${
-                  selectedFilter === 'Canceled' ? 'text-PRIMARY_BLUE' : 'text-DARK_TEXT'
+                  selectedFilters.includes('CANCELED') ? 'text-PRIMARY_BLUE' : 'text-DARK_TEXT'
                 }`}>
                 Canceled
               </Text>
@@ -110,12 +113,12 @@ const FilterSheet = ({ onClose, onDone, onSelect }: FilterSheetProps) => {
 
             <Pressable
               className={`bg-BOX_BG w-[27%] flex-row items-center justify-center gap-3 rounded-xl px-1 py-2  ${
-                selectedFilter === 'Rejected' ? 'border-PRIMARY_BLUE border' : ''
+                selectedFilters.includes('REJECTED') ? 'border-PRIMARY_BLUE border' : ''
               }`}
-              onPress={() => handleFilterPress('Rejected')}>
+              onPress={() => handleFilterPress('REJECTED')}>
               <Text
                 className={`font-SF_REGULAR text-base ${
-                  selectedFilter === 'Rejected' ? 'text-PRIMARY_BLUE' : 'text-DARK_TEXT'
+                  selectedFilters.includes('REJECTED') ? 'text-PRIMARY_BLUE' : 'text-DARK_TEXT'
                 }`}>
                 Rejected
               </Text>
@@ -123,12 +126,12 @@ const FilterSheet = ({ onClose, onDone, onSelect }: FilterSheetProps) => {
 
             <Pressable
               className={`bg-BOX_BG w-[22%] flex-row items-center justify-center gap-3 rounded-xl px-1 py-2  ${
-                selectedFilter === 'Lost' ? 'border-PRIMARY_BLUE border' : ''
+                selectedFilters.includes('LOST') ? 'border-PRIMARY_BLUE border' : ''
               }`}
-              onPress={() => handleFilterPress('Lost')}>
+              onPress={() => handleFilterPress('LOST')}>
               <Text
                 className={`font-SF_REGULAR text-base ${
-                  selectedFilter === 'Lost' ? 'text-PRIMARY_BLUE' : 'text-DARK_TEXT'
+                  selectedFilters.includes('LOST') ? 'text-PRIMARY_BLUE' : 'text-DARK_TEXT'
                 }`}>
                 Lost
               </Text>
@@ -138,12 +141,12 @@ const FilterSheet = ({ onClose, onDone, onSelect }: FilterSheetProps) => {
           <View className="flex-row  gap-4">
             <Pressable
               className={`bg-BOX_BG w-[22%] flex-row items-center justify-center gap-3 rounded-xl px-1 py-2  ${
-                selectedFilter === 'On Hold' ? 'border-PRIMARY_BLUE border' : ''
+                selectedFilters.includes('ON HOLD') ? 'border-PRIMARY_BLUE border' : ''
               }`}
-              onPress={() => handleFilterPress('On Hold')}>
+              onPress={() => handleFilterPress('ON HOLD')}>
               <Text
                 className={`font-SF_REGULAR text-base ${
-                  selectedFilter === 'On Hold' ? 'text-PRIMARY_BLUE' : 'text-DARK_TEXT'
+                  selectedFilters.includes('ON HOLD') ? 'text-PRIMARY_BLUE' : 'text-DARK_TEXT'
                 }`}>
                 On Hold
               </Text>
