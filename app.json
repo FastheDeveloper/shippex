@@ -30,7 +30,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.fasdev.shippex"
     },
     "android": {
       "adaptiveIcon": {

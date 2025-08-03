@@ -70,7 +70,7 @@ const ShipmentItem = ({
   }));
 
   return (
-    <View className={`my-4 rounded-t-lg ${extended ? '' : ' rounded-b-lg'} `}>
+    <View className={`my-4 rounded-t-lg ${extended ? '' : ' rounded-b-lg '} `}>
       <View
         className={` bg-BOX_BG flex-row items-center  justify-between rounded-t-lg ${extended ? '' : ' rounded-b-lg'} p-4 ${selected && !extended ? 'border-PRIMARY_BLUE border-[1px]' : selected ? 'border-PRIMARY_BLUE border-x-[1px] border-t-[1px]' : ''}`}>
         <View className="mr-2 w-[24px] items-center">
@@ -170,6 +170,16 @@ const ShipmentItem = ({
 const ShipmentList = ({ data }: ShipmentListProps) => {
   const [markedAll, setMarkedAll] = useState(false);
   const [selectedItems, setSelectedItems] = useState<Record<string, boolean>>({});
+  const [refreshing, setRefreshing] = useState(false);
+
+  const handleRefresh = () => {
+    setRefreshing(true);
+
+    setTimeout(() => {
+      // optionally reload or refetch data here
+      setRefreshing(false);
+    }, 2000); // 2 seconds
+  };
 
   const handleToggle = (id: string) => {
     setSelectedItems((prev) => ({
@@ -217,6 +227,8 @@ const ShipmentList = ({ data }: ShipmentListProps) => {
           </Pressable>
         </View>
       }
+      refreshing={refreshing}
+      onRefresh={handleRefresh}
     />
   );
 };
