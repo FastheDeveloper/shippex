@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState, useCallback } from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import LottieView from 'lottie-react-native';
-import { Stack, router } from 'expo-router';
+import { Stack } from 'expo-router';
 import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
 
@@ -17,11 +17,8 @@ import { useLoginForm } from '../hooks/useLoginHooks';
 
 export default function App() {
   const animation = useRef<LottieView>(null);
-  const [hasNavigated, setHasNavigated] = useState(false);
   const [played, setPlayed] = useState(false);
   const bottomSheetRef = useRef<BottomSheet>(null);
-
-  const isReady = true; // Replace with actual auth readiness check
 
   const [fontsLoaded] = useFonts({
     [FONT_NAMES.SF_REGULAR]: require('../assets/fonts/SF-REGULAR.otf'),
@@ -30,19 +27,15 @@ export default function App() {
     [FONT_NAMES.SF_BOLD]: require('~/src/assets/fonts/SF_BOLD.otf'),
   });
 
-  const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
-  }, []);
+  const handleSheetChanges = useCallback((index: number) => {}, []);
 
   useEffect(() => {
-    if (!isReady || !fontsLoaded || hasNavigated) return;
-
+    if (!fontsLoaded) return;
     const start = async () => {
       animation.current?.play();
     };
-
     start();
-  }, [isReady, fontsLoaded]);
+  }, [fontsLoaded]);
   const loginForm = useLoginForm();
 
   return (
@@ -75,7 +68,7 @@ export default function App() {
                 label={'Login'}
                 variant="secondary"
                 onPress={() => {
-                  bottomSheetRef.current?.snapToIndex(1); // 0 is the first snapPoint, which is 200
+                  bottomSheetRef.current?.snapToIndex(1);
                 }}
               />
             </Footer>

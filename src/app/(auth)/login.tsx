@@ -1,5 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React, { useState } from 'react';
+import { Text, View } from 'react-native';
 import AnimatedInput from '~/src/components/AnimatedInput';
 import { EyeClosed, EyeOpen } from '~/src/assets/svg/appicon';
 import AppButton from '~/src/components/BaseButton';

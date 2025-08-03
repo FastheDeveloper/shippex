@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { FlatList, StyleSheet, Text, View, ListRenderItem, Pressable } from 'react-native';
+import { useEffect, useState } from 'react';
+import { FlatList, Text, View, ListRenderItem, Pressable } from 'react-native';
 import shipmentData from '~/src/data/testdata.json';
 import {
   BigLeftIcon,
@@ -12,7 +12,7 @@ import {
   UncheckedBox,
   WhatsappIcon,
 } from '../assets/svg/appicon';
-import { APP_COLOR, ShipmentStatus, statusBGColors, statusColors } from '../constants/Colors';
+import { ShipmentStatus, statusBGColors, statusColors } from '../constants/Colors';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import DashedLine from './DottedLine';
 
@@ -44,7 +44,6 @@ const ShipmentItem = ({
   selected: boolean;
   onToggle: () => void;
 }) => {
-  // const  extended=true
   const [extended, setExtended] = useState(false);
 
   const height = useSharedValue(0);
@@ -71,9 +70,9 @@ const ShipmentItem = ({
   }));
 
   return (
-    <View className={`my-4 rounded-t-lg ${extended ? '' : ' rounded-b-lg'}`}>
+    <View className={`my-4 rounded-t-lg ${extended ? '' : ' rounded-b-lg'} `}>
       <View
-        className={` bg-BOX_BG flex-row items-center  justify-between rounded-t-lg ${extended ? '' : ' rounded-b-lg'} p-4`}>
+        className={` bg-BOX_BG flex-row items-center  justify-between rounded-t-lg ${extended ? '' : ' rounded-b-lg'} p-4 ${selected && !extended ? 'border-PRIMARY_BLUE border-[1px]' : selected ? 'border-PRIMARY_BLUE border-x-[1px] border-t-[1px]' : ''}`}>
         <View className="mr-2 w-[24px] items-center">
           {selected ? (
             <CheckedBox width={17} height={16} onPress={onToggle} />
@@ -123,7 +122,8 @@ const ShipmentItem = ({
       <Animated.View style={[animatedStyle]}>
         {extended && (
           <>
-            <View className="overflow-hidden rounded-b-lg bg-[#F4F2F880]">
+            <View
+              className={`overflow-hidden rounded-b-lg bg-[#F4F2F880] ${selected ? 'border-PRIMARY_BLUE border-x-[1px] border-b-[1px]' : ''}`}>
               <DashedLine
                 lineColor="white"
                 height={3}
