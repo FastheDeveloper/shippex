@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { APP_COLOR } from '~/src/constants/Colors';
-import { FONT_NAMES } from '../constants/fontNames';
 
 interface AppButtonProps extends PressableProps {
   loading?: boolean;
