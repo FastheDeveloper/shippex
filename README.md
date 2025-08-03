@@ -6,7 +6,7 @@
 
 ## 📹 Watch Demo
 
-## [▶️ Watch the video demo](./demo.mp4)
+## [▶️ Watch the video demo](https://streamable.com/0dmzkw)
 
 ## 🚀 Features
 
