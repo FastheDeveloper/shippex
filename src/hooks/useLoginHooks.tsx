@@ -46,7 +46,8 @@ export const useLoginForm = () => {
     handleEmailBlur();
     handlePasswordBlur();
 
-    const isValid = validateEmail(email) && password.trim().length > 0;
+    const isValid =
+      (typeof email === 'string' || validateEmail(email)) && password.trim().length > 0;
     if (!isValid) return;
 
     setIsLoading(true);
@@ -100,7 +101,8 @@ export const useLoginForm = () => {
     setIsLoading(false);
   };
 
-  const isEmailValid = validateEmail(email);
+  const isEmailValid = typeof email === 'string' || validateEmail(email);
+
   const isPasswordValid = password.trim().length >= 6;
   const isUrlValid =
     url.trim().startsWith('https://') &&

@@ -16,6 +16,7 @@ import FilterSheet from '~/src/components/FilterSheet';
 import shipmentData from '~/src/data/testdata.json';
 import PlainInput from '~/src/components/PlainInput';
 import Fuse from 'fuse.js';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const fuseOptions = {
   keys: [
@@ -75,7 +76,7 @@ export default function Home() {
   };
 
   return (
-    <View className="flex-1 bg-white px-4">
+    <SafeAreaView className="flex-1 bg-white px-4">
       <View>
         <View className="flex-row items-center justify-between">
           <Profile width={40} height={40} />
@@ -152,7 +153,7 @@ export default function Home() {
           />
         </BottomSheetView>
       </BottomSheet>
-    </View>
+    </SafeAreaView>
   );
 }
 

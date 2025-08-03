@@ -44,12 +44,11 @@ function AppContent() {
 
 export default function RootLayout() {
   return (
-    // <KeyboardProvider>
-    <>
-      <AppContent />
-      <Toast config={toastConfig} />
-    </>
-
-    // </KeyboardProvider>
+    <KeyboardProvider>
+      <>
+        <AppContent />
+        <Toast config={toastConfig} />
+      </>
+    </KeyboardProvider>
   );
 }
