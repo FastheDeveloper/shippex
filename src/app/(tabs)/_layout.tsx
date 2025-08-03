@@ -1,8 +1,5 @@
-import { Link, Tabs } from 'expo-router';
-
-import { HeaderButton } from '../../components/HeaderButton';
-import { TabBarIcon } from '../../components/TabBarIcon';
-import { ProfileTab, ScanIcon, ScanTab, ShipTab, WalletTab } from '~/src/assets/svg/appicon';
+import { Tabs } from 'expo-router';
+import { ProfileTab, ScanTab, ShipTab, WalletTab } from '~/src/assets/svg/appicon';
 import { APP_COLOR } from '~/src/constants/Colors';
 
 export default function TabLayout() {

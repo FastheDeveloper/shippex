@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { APP_COLOR } from '../constants/Colors';
 
 type FilterSheetProps = {
@@ -8,10 +8,7 @@ type FilterSheetProps = {
   onSelect: (filters: string[]) => void;
 };
 
-const FILTERS = ['RECEIVED', 'PUT AWAY', 'Delivered', 'Canceled', 'Rejected', 'Lost', 'On Hold'];
-
 const FilterSheet = ({ onClose, onDone, onSelect }: FilterSheetProps) => {
-  const [selectedFilter, setSelectedFilter] = useState('');
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
 
   const handleFilterPress = (filter: string) => {

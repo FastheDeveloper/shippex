@@ -68,7 +68,7 @@ export const BellIcon = (props: SvgProps) => (
 export const SearchIcon = (props: SvgProps) => (
   <Svg fill="none" {...props}>
     <Path
-      stroke="#A7A3B3"
+      stroke={props.color || '#A7A3B3'}
       strokeLinecap="round"
       strokeWidth={2}
       d="M16.927 17.04 20.4 20.4m-1.12-8.96a7.84 7.84 0 1 1-15.68 0 7.84 7.84 0 0 1 15.68 0Z"

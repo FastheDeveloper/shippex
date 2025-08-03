@@ -1,13 +1,9 @@
-// hooks/useLoginForm.ts
 import { useState } from 'react';
 
 import { router } from 'expo-router';
 import Toast from 'react-native-toast-message';
 
-import { saveSession } from '../utils/secureStorage';
-
 const validateEmail = (text: string) => {
-  // Basic email format check
   const isValid = /^\S+@\S+\.\S+$/.test(text);
   return isValid;
 };
@@ -22,15 +18,18 @@ export const useLoginForm = () => {
   const [url, setUrl] = useState('');
   const [urlError, setUrlError] = useState('');
   const handleEmailBlur = () => {
-    if (!email.trim()) {
-      setEmailError('Email is required');
-    } else if (!validateEmail(email)) {
+    if (typeof email !== 'string') {
+      setEmailError('Invalid input');
+    } else if (!email.trim()) {
+      setEmailError('Email/Username is required');
+    } else if (!isNaN(Number(email))) {
+      setEmailError('Email/Username cannot be a number');
+    } else if (!validateEmail(email) && email.includes('@')) {
       setEmailError('Please enter a valid email address');
     } else {
       setEmailError('');
     }
   };
-
   const handlePasswordBlur = () => {
     const trimmed = password.trim();
 
