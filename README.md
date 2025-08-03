@@ -4,7 +4,9 @@
 
 **Spotter** is a React Native app built with Expo that helps users manage and track their package deliveries. Whether you're shipping across cities or countries, Spotter provides a streamlined interface for viewing shipment status, marking deliveries, and filtering packages by status.
 
----
+## 📹 Watch Demo
+
+## [▶️ Watch the video demo](./demo.mp4)
 
 ## 🚀 Features
 
@@ -21,7 +23,6 @@
 - **TypeScript**
 - **TailwindCSS** (via [NativeWind](https://www.nativewind.dev/))
 - **Fuse.js** for fuzzy search
-- **Zustand** for global state management
 - **Reusable UI components** with custom SVG icons
 
 ---
